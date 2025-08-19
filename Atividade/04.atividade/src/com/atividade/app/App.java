@@ -1,37 +1,43 @@
 package com.atividade.app;
 
-import com.atividade.model.Pessoa;
-
 import javax.swing.JOptionPane;
 
+import com.atividade.model.IMC;
+
 public class App {
-
     public static void main(String[] args) throws Exception {
-        // Criar objeto da classe pessoa 
-        Pessoa = new Pessoa(null, 0, 0, 0);
+        IMC imc = new IMC(0.0, 0.0);
 
-        String[] opcoes = ("calcularIMC", "sair");
+        String[] opcoes = {"Calcular IMC", "Sair"};
         Object opcao;
-        
-        double imcvalor;
 
-        do{
-            opcao = JOptionPane.showMessageDialog(
+        double imcValor;
+
+        do {
+            opcao = JOptionPane.showInputDialog(
                 null, 
-                "Escolha a opção desejada", 
-                "IMC", JOptionPane.QUESTION_MESSAGE 
-                null, opcoes,opcoes(0)
+                "Escolha a opção desejada:", 
+                "IMC", 
+                JOptionPane.QUESTION_MESSAGE, 
+                null, 
+                opcoes, 
+                opcoes[0]
             );
+            
+            if (opcao == "Calcular IMC") {
+                imc.setPeso(Double.parseDouble(JOptionPane.showInputDialog("Informe o seu peso em kg:").replace(",", ".")));
+                imc.setAltura(Double.parseDouble(JOptionPane.showInputDialog("Informe a sua altura em metros:").replace(",", ".")));
 
-            if(opcao == "calcular imc") {
-                imc.setPeso(Double.parseDouble(JOptionPane.showInputDialog("informe o seu pesso em kg").replace(",", ".")));
-                imc.setPeso(Double.parseDouble(JOptionPane.showInputDialog("informe o sua altura em metros").replace(",", ".")));
+                imcValor = imc.calcularIMC();
 
-                imcvalor = imc.calcularIMC();
+                JOptionPane.showMessageDialog(
+                    null, 
+                    "Valor do IMC: " + String.format("%.2f", imcValor) +
+                    "\n" + imc.diagnostico(imcValor), 
+                    "IMC Resultado", 
+                    JOptionPane.INFORMATION_MESSAGE
+                );
             }
-        }while (opcao != "sair");
-
-
-        
+        } while (opcao != "Sair");
     }
 }
