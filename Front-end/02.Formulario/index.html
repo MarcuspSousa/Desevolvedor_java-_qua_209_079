@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!--autor da pagina-->
+    <meta name= "autor " content="marcus paulo de oliveira sousa " />
+    <!--indexa a pagina nos mecanismos de busca -->
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="java, senai, indústria,industria,programação. programacao, programador, desenvolvedor. desenvolvimento, qua, qua.209.079, qua20979, qua.209079, qua209.079, alex, machado, ribeiro, vesepertino, web, jee, ee, taguatinga, df "/>
+    <meta name="description" content="sistema frond-end feito no curso de desenvolvedor java vesepertino do senai taguatinga- df"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0>
+    <title>Formulario</title>
+</head>
+<body>
+    <h1>Formulario</h1>
+    <hr />
+    <form method=" ">
+        <label for="nome":>Nome:</label><br />
+        <input type="text" placeholder="digite seu nome" minlength="3" maxlength="32"/><br /><br />
+        <label for="idade">idade:</label><br />
+        <input type="number" value="18" min="12" max="65" /><br /><br />
+        <label for="dataNasc">Data de Nascimento:</label><br />
+        <input type="date" /><br />
+        <label for="senha">Senha:</label><br />
+        <input type="password" /><br /><br />
+        <label for="genero">Gênero:</label><br />
+        <input type="radio" name="genero" /><span>Masculino</span><br />
+        <input type="radio" name="genero" /><span>Feminino</span><br />
+        <input type="radio" name="genero" /><span>Outros</span><br />
+        <label for="escolaridade">Escolaridade</label><br />
+        <select>
+            <option name="Escolaridade">escolha uma opção</option>
+               <option name="Escolaridade">nivel Fundamental</option>
+                  <option name="Escolaridade">nivel Medio</option>
+                     <option name="Escolaridade">nivel Superior</option>
+                        <option name="Escolaridade">Pos Graduação</option>
+                           <option name="Escolaridade">Mestrado</option>
+                              <option name="Escolaridade">Doutorado</option>
+        </select>
+        <br /><br />
+        <label>Escolha as linguagens de programação que domina:</label><br />
+        <input type="checkbox" name="linguagens" ><span>C</span><br />
+         <input type="checkbox" name="linguagens" ><span>c++</span><br />
+           <input type="checkbox" name="linguagens" ><span>c#</span><br />
+             <input type="checkbox" name="linguagens" ><span>Java</span><br />
+               <input type="checkbox" name="linguagens" ><span>Lua</span><br />
+                 <input type="checkbox" name="linguagens" ><span>Ruby</span><br />
+                 <br />
+                 <label>Digite um comentario:</label><br />
+                 <textarea value="" rows="5" cols="55"></textarea><br />
+                 <label>Envie um arquivo</label><br />
+                 <input type="file"/><br />
+                 <button type="submit">Casdastrar</button>
+        
+    </form>
+
+</body>
+</html>
