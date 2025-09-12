@@ -19,11 +19,9 @@ public class Pessoa implements Serializable {
     private String  cpf;
     private String email; 
 
-    public Pessoa(long idpessoa, String nome, String cpf, String email) {
-        this.idpessoa = idpessoa;
-        this.nome = nome;
-        this.cpf = cpf;
-        this.email = email;
+
+
+    public Pessoa() {
     }
 
     public long getIdpessoa() {
