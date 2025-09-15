@@ -14,7 +14,7 @@ public class Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long idpessoa;
+    private long Idpessoa;
     private String nome;
     private String  cpf;
     private String email; 
@@ -25,11 +25,11 @@ public class Pessoa implements Serializable {
     }
 
     public long getIdpessoa() {
-        return this.idpessoa;
+        return this.Idpessoa;
     }
 
     public void setIdpessoa(long idpessoa) {
-        this.idpessoa = idpessoa;
+        this.Idpessoa = Idpessoa;
     }
 
     public String getNome() {
