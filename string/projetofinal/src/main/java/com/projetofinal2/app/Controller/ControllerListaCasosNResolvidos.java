@@ -16,6 +16,13 @@ import com.projetofinal2.app.repository.AppRepository;
 
 @Controller
 public class ControllerListaCasosNResolvidos {
+    @RequestMapping(value = "/detalhescasos/{idcaso}", method = RequestMethod.GET)
+    public ModelAndView detalhescasos(@PathVariable("idcaso") long idcaso) {
+        Caso caso = csr.findByIdCaso(idcaso);
+        ModelAndView mv = new ModelAndView("detalhescasos");
+        mv.addObject("caso", caso);
+        return mv;
+    }
     @Autowired
     private AppRepository csr;
 
