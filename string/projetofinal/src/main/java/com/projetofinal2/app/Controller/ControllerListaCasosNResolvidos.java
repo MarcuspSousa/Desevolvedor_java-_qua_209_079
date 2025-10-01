@@ -1,4 +1,4 @@
-package com.projetofinal2.app.Controller;
+package com.projetofinal2.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,52 +23,58 @@ public class ControllerListaCasosNResolvidos {
     public String index(){
         return "index";
     }
-    @RequestMapping("/listadecasos")
-    public ModelAndView listadecasos() {
-        ModelAndView mv = new ModelAndView("listar");
-        Iterable<Caso> usuarios = csr.findAll();
-        mv.addObject("usuarios", usuarios);
-        return mv;
-    }
-      @RequestMapping("/cadastro")
-      public String cadastro(){
+    @RequestMapping(value = "/cadastro" , method = RequestMethod.GET)
+    public String cadastro(){
         return "cadastro";
-      }
-
-          @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
-    public String cadastrar(Caso usuario){
-        csr.save(usuario);
-        return "redirect:/";
-    }      
-
-    @RequestMapping(value = "alterarUsuario/(idPessoa)" , method = RequestMethod.POST)
-    public String alterarUsuario(@Validated Caso usuario, BindingResult result , RedirectAttributes attributes){
-        csr.save(usuario);
-        return "redrect;/cadastro";
     }
-     @RequestMapping(value = "/alterarUsuario/{idPessoa} " , method = RequestMethod.GET)
-    public ModelAndView alterarUsuario(@PathVariable("idcaso")long idCaso) {
-        Caso usuario = csr.findByIdCaso(idCaso);
-        ModelAndView mv = new ModelAndView("alterarUsuario");
-        mv.addObject("usuario", usuario);
+   
+    @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
+    public String cadastro(Caso caso){
+        csr.save(caso);
+        return "redirect:/listadecasos";
+    }
+
+    //  @RequestMapping(value = "/listadecasos", method = RequestMethod.GET)
+    // public String listadecasos(){
+    //     return "listadecasos";
+    // }
+    //lsita de casos 
+    @RequestMapping(value= "/listadecasos",method = RequestMethod.GET)
+    public ModelAndView listadecasos(){
+        ModelAndView mv = new ModelAndView("listadecasos");
+        Iterable<Caso> casos = csr.findAll();
+        mv.addObject("casos", casos);
         return mv;
     }
-
-    @RequestMapping("/confirmaresclusão/(idPessoa)")
-    public ModelAndView confirmarExclusão(@PathVariable("idcaso") long idCaso) {
-        Caso usuario = csr.findByIdCaso(idCaso);
-        ModelAndView mv = new ModelAndView("excluirUsuario");
-        mv.addObject("usuario", usuario);
+    //alterar caso
+    @RequestMapping(value = "/alterarcaso/{idcaso}", method = RequestMethod.GET)
+    public ModelAndView alterarcaso(@PathVariable("idcaso")long idcaso){
+        Caso caso = csr.findByIdCaso(idcaso);
+        ModelAndView mv = new ModelAndView("alterarcaso");
+        mv.addObject("caso", caso);
         return mv;
     }
-
-    @RequestMapping("/excluirUsuario")
-    public String excluirUsuario(long idCaso) {
-        Caso usuario = csr.findByIdCaso(idCaso);
-        csr.delete(usuario);
-        return "redirect:/listar";
+    @RequestMapping (value = "/alterarcaso/{id_caso}",
+    method = RequestMethod.POST)
+    public String alterarcaso(@Validated Caso caso, 
+    BindingResult result, RedirectAttributes atriAttributes){
+        csr.save(caso);
+        return "redirect:/listadecasos";
     }
 
+    //excluir caso 
+    @RequestMapping(value = "/confirmarExclusao/{idcaso}")
+    public ModelAndView confirmarExclusao(@PathVariable ("idcaso") long idcaso){
+        Caso caso = csr.findByIdCaso(idcaso);
+        ModelAndView mv = new ModelAndView("excluircaso");
+        mv.addObject("caso", caso);
+        return mv;
+    }
+    @RequestMapping(value = "/excluircaso", method = RequestMethod.POST)
+    public String excluircaso(long idcaso) {
+        csr.deleteById(idcaso);
+        return "redirect:/listadecasos";
+    }
 
 
 }

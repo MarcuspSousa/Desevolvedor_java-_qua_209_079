@@ -4,8 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.projetofinal2.app.models.Caso;
 
-public interface AppRepository extends CrudRepository<Caso,String>{
+public interface AppRepository extends CrudRepository<Caso, Long> {
     Caso findByIdCaso(long idCaso);
-    Caso deleteByidCaso(long idcaso);
-
 }

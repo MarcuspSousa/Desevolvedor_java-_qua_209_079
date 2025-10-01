@@ -15,49 +15,55 @@
 <link rel="stylesheet" href="style/listar.css">
 
 </head>
-<body>
+<body class="bg-dark text-light">
     <!-- navbar -->
-     <header th:replace="fragments/navbar :: navbar"></header>
+    <header th:replace="fragments/navbar :: navbar"></header>
     <!-- fim navbar -->
-     
-<div class="container-lg">
-    <div class="table-responsive">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-8"><h2><b>Casos</b></h2></div>
-                    <div class="col-sm-4">
-                        <button type="button" class="btn btn-info add-new">
-                            <i class="fa fa-plus"></i> Adicionar
-                        </button>
-                    </div>
-                </div>
+
+<div class="container py-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="fw-bold text-info">Lista de Casos</h2>
+        <a href="/cadastro" class="btn btn-info btn-lg shadow-sm">
+            <i class="fa fa-plus me-2"></i> Novo Caso
+        </a>
+    </div>
+    <div class="card shadow-sm bg-secondary border-0">
+        <div class="card-body p-0">
+            <div class="table-responsive">
+                <table class="table table-dark table-hover align-middle mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome do Caso</th>
+                            <th>Concluído?</th>
+                            <th>Indeferido?</th>
+                            <th class="text-center">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="caso:${casos}">
+                            <td th:text="${caso.idCaso}"></td>
+                            <td th:text="${caso.nome}"></td>
+                            <td>
+                                <span th:text="${caso.concluido}" th:classappend="${caso.concluido} == 'sim' ? 'badge bg-success' : 'badge bg-light text-dark'">Concluído</span>
+                            </td>
+                            <td>
+                                <span th:text="${caso.indeferido}" th:classappend="${caso.indeferido} == 'sim' ? 'badge bg-danger' : 'badge bg-light text-dark'">Indeferido</span>
+                            </td>
+                            <td class="text-center">
+                                <a class="btn btn-outline-info btn-sm me-2" th:href="@{'/alterarcaso/' + ${caso.idCaso}}" title="Editar">
+                                    <i class="material-icons">&#xE254;</i>
+                                </a>
+                                <a class="btn btn-outline-danger btn-sm" th:href="@{'/confirmarExclusao/' + ${caso.idCaso}}" title="Excluir">
+                                    <i class="material-icons">&#xE872;</i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-            <table class="table table-bordered" style="table-layout: auto; width: 100%;">
-                <thead>
-                    <tr>
-                        <th style="width: 5%;">id</th>
-                        <th style="min-width: 180px;">nome do caso</th>
-                        <th style="min-width: 220px;">caso Concluido</th>
-                        <th style="min-width: 150px;">caso Indeferido?</th>
-                    </tr>
-                </thead>
-                <tbody>
-                   <tr th:each="caso:${casos}">
-                        <td><span th:text="${caso.id_caso}"></span></td>
-                        <td><span th:text="${caso.nome}"></span></td>
-                        <td style="word-wrap: break-word;"><span th:text="${caso.concluido}"></span></td>
-                        <td><span th:text="${caso.indeferido}"></span></td>
-                        <td>
-                                <div> <a class="btn btn-waning" role="button" th:href="@{'/alterarUsuario/'+ ${usuario.idcaso}}" data-toggle="tooltip"><i class="material-icons">&#xE254</i></a></div>
-                                <div> <a class="btn btn-danger" role="button" th:href="@{'/confirmarExclusao/'+ ${usuario.idcaso}}" data-toggle="tooltip"><i class="material-icons">&#xE872</i></a></div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
-</div>
 </div>
 <script src="js/listar.js"></script>     
 </body>
