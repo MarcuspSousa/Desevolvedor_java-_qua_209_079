@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Alterar Caso</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
 </head>
+
 <body class="bg-dark text-light">
     <header th:replace="fragments/navbar :: navbar"></header>
     <main class="container py-5">
@@ -17,11 +19,13 @@
                         <form th:action="@{'/alterarcaso/' + ${caso.idCaso}}" method="post">
                             <div class="mb-3">
                                 <label for="nome" class="form-label">Nome do Caso</label>
-                                <input type="text" class="form-control bg-dark text-light border-info" id="nome" name="nome" th:value="${caso.nome}" required />
+                                <input type="text" class="form-control bg-dark text-light border-info" id="nome"
+                                    name="nome" th:value="${caso.nome}" required />
                             </div>
                             <div class="mb-3">
                                 <label for="local" class="form-label">Local do Crime</label>
-                                <input type="text" class="form-control bg-dark text-light border-info" id="local" name="local" th:value="${caso.local}" required />
+                                <input type="text" class="form-control bg-dark text-light border-info" id="local"
+                                    name="local" th:value="${caso.local}" required />
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Caso Concluído?</label>
@@ -47,5 +51,8 @@
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <div th:replace="fragments/footer :: footer"></div>
 </body>
+
 </html>
